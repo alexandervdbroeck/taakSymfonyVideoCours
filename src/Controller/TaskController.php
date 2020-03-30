@@ -11,41 +11,59 @@ use Twig\Environment;
 
 class TaskController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_homepage")
+     //        -        -        -        G E T   A L L   T A S K S        -        -        -
+        /**
+     * @Route("/api/taken".methods={"GET"})
      */
-    public function homepage()
+    public function getAllTasks()
     {
-        return $this->render('homepage.html.twig');
+        // TODO - get the database response back
+
+        return $this->json( [ 'test' => 'this is my little test'] );
     }
 
-    /**
-     * @Route("/news/{slug}", name="article_show")
+     //        -        -        -        G E T   1   T A S K   B Y   I D        -        -        -
+        /**
+     * @Route("/api/taak/{taskid}".methods={"GET"})
      */
-    public function show($slug)
+    public function getOneTasks( $taskid )
     {
-        $comments = [
-            'I ate a normal rock once. It did NOT taste like bacon!',
-            'Woohoo! I\'m going on an all-asteroid diet!',
-            'I like bacon too! Buy some from my site! bakinsomebacon.com',
-        ];
+        // TODO - get the database response back
 
-        return $this->render('show.html.twig', [
-            'title' => ucwords(str_replace('-', ' ', $slug)),
-            'slug' => $slug,
-            'comments' => $comments,
-        ]);
+        return $this->json( [ 'test' => 'this is my little test'] );
+    }
+    
+     //        -        -        -        A D D   1   T A S K        -        -        -
+        /**
+     * @Route("/api/taak/".methods={"POST"})
+     */
+    public function addOnelTasks()
+    {
+        // TODO - get the database response back
+
+        return $this->json( [ 'test' => 'this is my little test'] );
     }
 
-    /**
-     * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
+     //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
+        /**
+     * @Route("/api/taak/{taskid}".methods={"PUT"})
      */
-    public function toggleArticleHeart($slug, LoggerInterface $logger)
+    public function editOnelTasks()
     {
-        // TODO - actually heart/unheart the article!
+        // TODO - get the database response back
 
-        $logger->info('Article is being hearted!');
-
-        return new JsonResponse(['hearts' => rand(5, 100)]);
+        return $this->json( [ 'test' => 'this is my little test'] );
     }
+
+     //        -        -        -        D E L E T E   1   T A S K   B Y   I D        -        -        -
+        /**
+     * @Route("/api/taak/{taskid}".methods={"DELETE"})
+     */
+    public function deleteOnelTasks()
+    {
+        // TODO - get the database response back
+
+        return $this->json( [ 'test' => 'this is my little test'] );
+    }
+
 }
