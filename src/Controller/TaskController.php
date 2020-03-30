@@ -17,9 +17,9 @@ class TaskController extends AbstractController
      */
     public function getAllTasks()
     {
-        // TODO - get the database response back
+        $allTasks = $this->PDO->getData( 'SELECT * FROM taak' );
 
-        return $this->json( [ 'test' => 'this is my little test'] );
+        return $this->json( $allTasks );
     }
 
      //        -        -        -        G E T   1   T A S K   B Y   I D        -        -        -
@@ -28,9 +28,9 @@ class TaskController extends AbstractController
      */
     public function getOneTasks( $taskid )
     {
-        // TODO - get the database response back
+     $task = $this->PDO->getData( 'SELECT * FROM taak where taa_id =' . $taskid );
 
-        return $this->json( [ 'test' => 'this is my little test'] );
+        return $this->json( $task[0] );
     }
     
      //        -        -        -        A D D   1   T A S K        -        -        -
@@ -39,9 +39,14 @@ class TaskController extends AbstractController
      */
     public function addOnelTasks()
     {
-        // TODO - get the database response back
+     $task = file_get_contents('php://input');
+     $task= json_decode($task, true);
+     $taskDate = htmlentities($task[ 'taa_datum' ], ENT_QUOTES);
+     $taskDescr = htmlentities($task[ 'taa_omschr' ], ENT_QUOTES);
 
-        return $this->json( [ 'test' => 'this is my little test'] );
+     $sql = "INSERT INTO taak SET taa_datum = '" . $taskDate. "', taa_omschr = '" . $taskDescr. "'";
+
+     return $this->PDO->executeSQL($sql);
     }
 
      //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
