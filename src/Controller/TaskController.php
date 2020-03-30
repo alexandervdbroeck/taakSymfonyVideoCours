@@ -17,9 +17,9 @@ class TaskController extends AbstractController
      public function __construct()
      {
          $this->pdo = new PDO(
-             "mysql:host=185.115.218.166;dbname=wdev_alexander",
-             "wdev_alexander",
-             "u2k8EwwQvDav"
+             "dsn",
+             "user",
+             "password"
          );
          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      }
