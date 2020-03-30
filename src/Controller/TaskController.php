@@ -11,6 +11,39 @@ use Twig\Environment;
 
 class TaskController extends AbstractController
 {
+     //        -        -        -        P D O   C O N N E C T I O N        -        -        -
+     private $pdo;
+
+     public function __construct(PDO $pdo)
+     {
+         $this->pdo = $pdo;
+     }
+ 
+     /**
+      * @param string $sql
+      * @return mixed
+      */
+     public function getData(string $sql)
+     {
+         $stm = $this->pdo->prepare($sql);
+         $stm->execute();
+ 
+         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+         return $rows;
+     }
+ 
+     /**
+      * @param $sql
+      * @return bool
+      */
+     function executeSQL(string $sql )
+     {
+         $stm = $this->pdo->prepare($sql);
+ 
+         if ( $stm->execute() ) return true;
+         else return false;
+     }
+
      //        -        -        -        G E T   A L L   T A S K S        -        -        -
         /**
      * @Route("/api/taken", methods={"GET"})
