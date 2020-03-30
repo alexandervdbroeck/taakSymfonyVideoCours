@@ -13,7 +13,7 @@ class TaskController extends AbstractController
 {
      //        -        -        -        G E T   A L L   T A S K S        -        -        -
         /**
-     * @Route("/api/taken".methods={"GET"})
+     * @Route("/api/taken", methods={"GET"})
      */
     public function getAllTasks()
     {
@@ -24,7 +24,7 @@ class TaskController extends AbstractController
 
      //        -        -        -        G E T   1   T A S K   B Y   I D        -        -        -
         /**
-     * @Route("/api/taak/{taskid}".methods={"GET"})
+     * @Route("/api/taak/{taskid}", methods={"GET"})
      */
     public function getOneTasks( $taskid )
     {
@@ -35,7 +35,7 @@ class TaskController extends AbstractController
     
      //        -        -        -        A D D   1   T A S K        -        -        -
         /**
-     * @Route("/api/taak/".methods={"POST"})
+     * @Route("/api/taak/", methods={"POST"})
      */
     public function addOnelTasks()
     {
@@ -51,9 +51,9 @@ class TaskController extends AbstractController
 
      //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
         /**
-     * @Route("/api/taak/{taskid}".methods={"PUT"})
+     * @Route("/api/taak/{taskid}", methods={"PUT"})
      */
-    public function editOnelTasks()
+    public function editOnelTasks( $taskid )
     {
         // TODO - get the database response back
 
@@ -62,9 +62,9 @@ class TaskController extends AbstractController
 
      //        -        -        -        D E L E T E   1   T A S K   B Y   I D        -        -        -
         /**
-     * @Route("/api/taak/{taskid}".methods={"DELETE"})
+     * @Route("/api/taak/{taskid}", methods={"DELETE"})
      */
-    public function deleteOnelTasks()
+    public function deleteOnelTasks( $taskid )
     {
         // TODO - get the database response back
 
