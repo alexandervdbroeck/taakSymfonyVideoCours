@@ -51,7 +51,7 @@ class TaskController extends AbstractController
 
      //        -        -        -        G E T   A L L   T A S K S        -        -        -
         /**
-     * @Route("/api/taken",name="getalltasks", methods={"GET"})
+     * @Route("/api/taken", methods={"GET"})
      */
     public function getAllTasks()
     {
@@ -59,6 +59,16 @@ class TaskController extends AbstractController
 
         return $this->json( $allTasks );
     }
+
+
+
+
+
+
+
+
+
+
 
      //        -        -        -        G E T   1   T A S K   B Y   I D        -        -        -
         /**
@@ -70,7 +80,17 @@ class TaskController extends AbstractController
 
         return $this->json( $task[0] );
     }
-    
+
+
+
+
+
+
+
+
+
+
+
      //        -        -        -        A D D   1   T A S K        -        -        -
         /**
      * @Route("/api/taak/", methods={"POST"})
@@ -87,6 +107,17 @@ class TaskController extends AbstractController
      return $this->executeSQL($sql);
     }
 
+
+
+
+
+
+
+
+
+
+
+
      //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
         /**
      * @Route("/api/taak/{taskid}", methods={"PUT"})
@@ -97,6 +128,17 @@ class TaskController extends AbstractController
 
         return $this->json( [ 'test' => 'this is my little test'] );
     }
+
+
+
+
+
+
+
+
+
+
+
 
      //        -        -        -        D E L E T E   1   T A S K   B Y   I D        -        -        -
         /**
