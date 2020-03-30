@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use PDO;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,9 +14,14 @@ class TaskController extends AbstractController
      //        -        -        -        P D O   C O N N E C T I O N        -        -        -
      private $pdo;
 
-     public function __construct(PDO $pdo)
+     public function __construct()
      {
-         $this->pdo = $pdo;
+         $this->pdo = new PDO(
+             "mysql:host=185.115.218.166;dbname=wdev_alexander",
+             "wdev_alexander",
+             "u2k8EwwQvDav"
+         );
+         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      }
  
      /**
@@ -46,11 +51,11 @@ class TaskController extends AbstractController
 
      //        -        -        -        G E T   A L L   T A S K S        -        -        -
         /**
-     * @Route("/api/taken", methods={"GET"})
+     * @Route("/api/taken",name="getalltasks", methods={"GET"})
      */
     public function getAllTasks()
     {
-        $allTasks = $this->PDO->getData( 'SELECT * FROM taak' );
+        $allTasks = $this->getData( 'SELECT * FROM taak' );
 
         return $this->json( $allTasks );
     }
@@ -61,7 +66,7 @@ class TaskController extends AbstractController
      */
     public function getOneTasks( $taskid )
     {
-     $task = $this->PDO->getData( 'SELECT * FROM taak where taa_id =' . $taskid );
+     $task = $this->getData( 'SELECT * FROM taak where taa_id =' . $taskid );
 
         return $this->json( $task[0] );
     }
@@ -79,7 +84,7 @@ class TaskController extends AbstractController
 
      $sql = "INSERT INTO taak SET taa_datum = '" . $taskDate. "', taa_omschr = '" . $taskDescr. "'";
 
-     return $this->PDO->executeSQL($sql);
+     return $this->executeSQL($sql);
     }
 
      //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
