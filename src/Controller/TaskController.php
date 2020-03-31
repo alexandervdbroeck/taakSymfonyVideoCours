@@ -9,9 +9,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-require_once "connection.php";
-
-
 class TaskController extends AbstractController
 {
      //        -        -        -        P D O   C O N N E C T I O N        -        -        -
