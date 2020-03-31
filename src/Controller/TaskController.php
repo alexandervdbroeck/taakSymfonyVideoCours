@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\service\Container;
 use PDO;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,16 +13,13 @@ use Twig\Environment;
 class TaskController extends AbstractController
 {
      //        -        -        -        P D O   C O N N E C T I O N        -        -        -
-     private $pdo;
+     private $taskService;
 
      public function __construct()
      {
-         $this->pdo = new PDO(
-             "mysql:host=185.115.218.166;dbname=wdev_alexander",
-             "wdev_alexander",
-             "u2k8EwwQvDav"
-         );
-         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $cont = new Container();
+        $this->taskService = $cont->getTaskLoader();
+
      }
  
      /**
@@ -44,7 +42,7 @@ class TaskController extends AbstractController
      function executeSQL(string $sql )
      {
          $stm = $this->pdo->prepare($sql);
- 
+
          if ( $stm->execute() ) return true;
          else return false;
      }
@@ -55,9 +53,8 @@ class TaskController extends AbstractController
      */
     public function getAllTasks()
     {
-        $allTasks = $this->getData( 'SELECT * FROM taak' );
-
-        return $this->json( $allTasks );
+         $this->taskService->procesApiGetAllTasks();
+        return new JsonResponse("succes");
     }
 
 
