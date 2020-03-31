@@ -120,10 +120,9 @@ class TaskController extends AbstractController
      * @Route("/api/taak/{taskid}", methods={"PUT"})
      */
     public function editOnelTasks( $taskid )
-    {
-        // TODO - get the database response back
+    { $this->taskService->procesApiGetTaskById($taskid);
 
-        return $this->json( [ 'test' => 'this is my little test'] );
+        return new JsonResponse("succes");
     }
 
 

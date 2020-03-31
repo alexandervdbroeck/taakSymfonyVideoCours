@@ -3,6 +3,8 @@
 
 namespace App\service;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class ApiService
 {
@@ -180,6 +182,7 @@ class ApiService
         }
 
         echo json_encode($this->responseData);
+//        echo new JsonResponse($this->responseData);
     }
 
     public function getDataInJsonFromApiRequest()
