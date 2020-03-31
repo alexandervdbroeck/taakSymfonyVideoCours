@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
+require_once "connection.php";
+
+
 class TaskController extends AbstractController
 {
      //        -        -        -        P D O   C O N N E C T I O N        -        -        -
@@ -16,11 +19,7 @@ class TaskController extends AbstractController
 
      public function __construct()
      {
-         $this->pdo = new PDO(
-             "dsn",
-             "user",
-             "password"
-         );
+         $this->pdo = new PDO( connectionInfo() );
          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      }
  
