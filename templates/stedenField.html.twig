@@ -1,0 +1,21 @@
+{% extends 'homeSteden.html.twig' %}
+
+{% block body %}
+
+
+
+
+
+        {% for stad in steden %}
+
+            <div class="col-sm-4">
+
+
+                <a href="/stad/{{ stad['img_id']}}"> <h3>{{stad['img_title']}}</h3></a>
+                <img class="img-fluid" src="images/{{stad['img_filename']}}.jpg">
+
+            </div>
+
+        {% endfor %}
+
+{% endblock %}

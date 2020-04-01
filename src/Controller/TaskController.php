@@ -12,7 +12,6 @@ use Twig\Environment;
 
 class TaskController extends AbstractController
 {
-     //        -        -        -        P D O   C O N N E C T I O N        -        -        -
      private $taskService;
 
      public function __construct()
@@ -20,31 +19,6 @@ class TaskController extends AbstractController
         $cont = new Container();
         $this->taskService = $cont->getTaskLoader();
 
-     }
- 
-     /**
-      * @param string $sql
-      * @return mixed
-      */
-     public function getData(string $sql)
-     {
-         $stm = $this->pdo->prepare($sql);
-         $stm->execute();
- 
-         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
-         return $rows;
-     }
- 
-     /**
-      * @param $sql
-      * @return bool
-      */
-     function executeSQL(string $sql )
-     {
-         $stm = $this->pdo->prepare($sql);
-
-         if ( $stm->execute() ) return true;
-         else return false;
      }
 
      //        -        -        -        G E T   A L L   T A S K S        -        -        -
@@ -57,16 +31,6 @@ class TaskController extends AbstractController
         return new JsonResponse("succes");
     }
 
-
-
-
-
-
-
-
-
-
-
      //        -        -        -        G E T   1   T A S K   B Y   I D        -        -        -
         /**
      * @Route("/api/taak/{taskid}", methods={"GET"})
@@ -77,16 +41,6 @@ class TaskController extends AbstractController
 
         return $this->json( $task[0] );
     }
-
-
-
-
-
-
-
-
-
-
 
      //        -        -        -        A D D   1   T A S K        -        -        -
         /**
@@ -104,24 +58,13 @@ class TaskController extends AbstractController
      return $this->executeSQL($sql);
     }
 
-
-
-
-
-
-
-
-
-
-
-
      //        -        -        -        E D I T   1   T A S K   B Y   I D        -        -        -
         /**
      * @Route("/api/taak/{taskid}", methods={"PUT"})
      */
     public function editOnelTasks( $taskid )
-    { $this->taskService->procesApiGetTaskById($taskid);
-
+    {
+        $this->taskService->procesApiGetTaskById($taskid);
         return new JsonResponse("succes");
     }
 
