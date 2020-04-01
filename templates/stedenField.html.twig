@@ -5,14 +5,15 @@
 
 
 
-
+    <a href="{{ path('app_steden') }}">Home</a>
         {% for stad in steden %}
 
             <div class="col-sm-4">
 
 
-                <a href="/stad/{{ stad['img_id']}}"> <h3>{{stad['img_title']}}</h3></a>
-                <img class="img-fluid" src="images/{{stad['img_filename']}}.jpg">
+                <a href="/stad/{{ stad['img_id']}}"> <h3>{{stad['img_api']}}</h3></a>
+                <img class="img-fluid" src="../images/{{stad['img_filename']}}.jpg">
+                <p>pic name: {{ stad['img_filename'] }}</p>
 
             </div>
 
