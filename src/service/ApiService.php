@@ -181,8 +181,8 @@ class ApiService
 
         }
 
-        echo json_encode($this->responseData);
-//        echo new JsonResponse($this->responseData);
+//        echo json_encode($this->responseData);
+        echo new JsonResponse($this->responseData);
     }
 
     public function getDataInJsonFromApiRequest()
